@@ -25,19 +25,32 @@ public class ExecutaCargaDAO {
 	
 	private String converteDataParaTextoSemHora(Date data) {
 		
-		SimpleDateFormat stringToDate = new SimpleDateFormat("ddMMyyyy");
+		if(data == null) {
+			
+			return "";
+			
+		}
+		else {
 		
-		return stringToDate.format(data);
+			SimpleDateFormat stringToDate = new SimpleDateFormat("ddMMyyyy");
+			
+			return stringToDate.format(data);
+		}
 		
 	}
 	
 	private String converteDataParaTextoComHora(Date data) {
 		
-		
-		SimpleDateFormat stringToDate = new SimpleDateFormat("ddMMyyyy HHmmss");
-		
-		return stringToDate.format(data);
-		
+		if(data == null) {
+			
+			return "";
+			
+		}
+		else {
+			SimpleDateFormat stringToDate = new SimpleDateFormat("ddMMyyyy HHmmss");
+			
+			return stringToDate.format(data);
+		}
 	}
 
 	public void executa(String chave, String banco) {
@@ -130,6 +143,65 @@ public class ExecutaCargaDAO {
 					comando = comando.replace("[REGIAO]", resultSet.getString(9));
 					comando = comando.replace("[ESTADO]", resultSet.getString(10));
 					comando = comando.replace("[POPULACAO]", resultSet.getString(11));					
+					
+				} else if (chave.equals("VENDA")) {
+					
+					comando = comando.replace("[ID]", resultSet.getString(1));
+					comando = comando.replace("[EMPRESA]", resultSet.getString(2));
+					comando = comando.replace("[FILIAL_ID]", resultSet.getString(3));
+					comando = comando.replace("[DATA]", this.converteDataParaTextoSemHora(resultSet.getDate(4)));
+					comando = comando.replace("[NRONOTA]", String.valueOf(resultSet.getLong(5)));
+					comando = comando.replace("[PRAZOMEDIO]", String.valueOf(resultSet.getLong(6)));
+					comando = comando.replace("[CLIENTE_ID]", String.valueOf(resultSet.getLong(7)));
+					comando = comando.replace("[PRODUTO_ID]", String.valueOf(resultSet.getLong(8)));
+					comando = comando.replace("[QUANTIDADE]", String.valueOf(resultSet.getLong(9)));
+					comando = comando.replace("[CUSTO]", String.valueOf(resultSet.getLong(10)));
+					comando = comando.replace("[PRECO]", String.valueOf(resultSet.getLong(11)));
+					comando = comando.replace("[TIPO]", resultSet.getString(12));
+					Date dtcancel = resultSet.getDate(13);
+					String dataCancelFormatada;
+					
+					if(dtcancel == null) {
+						
+						dataCancelFormatada = "null";
+					}
+					
+					else {
+						dataCancelFormatada = this.converteDataParaTextoSemHora(resultSet.getDate(13));
+						dataCancelFormatada = "'" + dataCancelFormatada + "'";
+					}
+					
+					comando = comando.replace("[DTCANCEL]", dataCancelFormatada);
+					comando = comando.replace("[DTULTIMAALTERACAO]", this.converteDataParaTextoSemHora(resultSet.getDate(14)));
+					
+				}
+				
+				else if (chave.equals("ENTRADA")) {
+					
+					comando = comando.replace("[ID]", resultSet.getString(1));
+					comando = comando.replace("[EMPRESA]", resultSet.getString(2));
+					comando = comando.replace("[FILIAL_ID]", resultSet.getString(3));
+					comando = comando.replace("[DTEMISSAO]", this.converteDataParaTextoSemHora(resultSet.getDate(4)));
+					comando = comando.replace("[NRONOTA]", String.valueOf(resultSet.getLong(5)));
+					comando = comando.replace("[PARCELAMENTO]", resultSet.getString(6));
+					comando = comando.replace("[PRODUTO_ID]", String.valueOf(resultSet.getLong(7)));
+					comando = comando.replace("[QUANTIDADE]", String.valueOf(resultSet.getLong(8)));
+					comando = comando.replace("[PRECOCOMPRA]", String.valueOf(resultSet.getLong(9)));
+					comando = comando.replace("[VLCREDICMS]", String.valueOf(resultSet.getLong(10)));
+					comando = comando.replace("[TIPO]", resultSet.getString(11));
+					
+					Date dtcancel = resultSet.getDate(12);
+					String dataCancelFormatada;
+					if(dtcancel == null) {
+						dataCancelFormatada = "null";
+					}
+					else {
+						dataCancelFormatada = this.converteDataParaTextoSemHora(resultSet.getDate(12));
+						dataCancelFormatada = "'" + dataCancelFormatada + "'";
+					}
+					
+					comando = comando.replace("[DTCANCEL]", dataCancelFormatada);
+					comando = comando.replace("[DTULTIMAALTERACAO]", this.converteDataParaTextoSemHora(resultSet.getDate(13)));
 					
 				}
 				

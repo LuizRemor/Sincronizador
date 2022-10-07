@@ -25,8 +25,9 @@ public class AtualizacaoControle {
 	//	visoes.add("FILIAL");
 	//	visoes.add("CLIENTE");
 	//	visoes.add("PRODUTO");
-		visoes.add("LOCALIZACAO");
-		
+	//	visoes.add("LOCALIZACAO");
+	//	visoes.add("VENDA");
+		visoes.add("ENTRADA");
 	}
 	
 	public void atualizaCargas() {
