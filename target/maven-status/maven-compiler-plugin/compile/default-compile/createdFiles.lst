@@ -1,0 +1,5 @@
+br\com\sincronizador\util\ConversorServico.class
+br\com\sincronizador\util\ArquivoServico.class
+br\com\sincronizador\util\ConexaoBancoDados.class
+br\com\sincronizador\util\ArquivoPropertie.class
+br\com\sincronizador\tela\Principal.class
