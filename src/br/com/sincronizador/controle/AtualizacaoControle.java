@@ -1,53 +1,52 @@
 package br.com.sincronizador.controle;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JTextArea;
 
 import br.com.sincronizador.dao.ExecutaCargaDAO;
 
 public class AtualizacaoControle {
-	
-	
+
 	private ExecutaCargaDAO executaCargaDAO;
 	private List<String> bancos;
 	private List<String> visoes;
-	
-	public AtualizacaoControle() {
-		
+
+	public AtualizacaoControle(List<String> bancos, List<String> visoes) {
+
 		executaCargaDAO = new ExecutaCargaDAO();
-		bancos = new ArrayList<>();
-		visoes = new ArrayList<>();
-		
+		this.bancos = bancos;
+		this.visoes = visoes;
+
 		bancos.add("DIFERPAN");
-		
-	//	visoes.add("FILIAL");
-	//	visoes.add("CLIENTE");
-	//	visoes.add("PRODUTO");
-	//	visoes.add("LOCALIZACAO");
-	//	visoes.add("VENDA");
-		visoes.add("ENTRADA");
+
 	}
-	
-	public void atualizaCargas() {
-		
+
+	public void atualizaCargas(String tipoCarga, JTextArea textArea) {
+
 		SimpleDateFormat stringToDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+
+		textArea.setText("");
 		
+		textArea.setText("MODO DE EXCUÇÂO - MANUAL \n\n");
+
 		for (String banco : bancos) {
-			
+
 			for (String visao : visoes) {
-				
-				System.out.println("Iniciou: " + visao + " no banco: " + banco + " as " + stringToDate.format(new Date()));
-				
-				executaCargaDAO.executa(visao, banco);
-				
-				System.out.println("Finalizou: " + visao + " no banco: " + banco + " as " + stringToDate.format(new Date()));
-				
+
+				textArea.append("Iniciou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+						+ stringToDate.format(new Date()) + "\n");
+
+				executaCargaDAO.executa(visao, banco, tipoCarga, textArea);
+
+				textArea.append("Finalizou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+						+ stringToDate.format(new Date()) + "\n");
+
 			}
 		}
-	
+
 	}
 
 }
- 
