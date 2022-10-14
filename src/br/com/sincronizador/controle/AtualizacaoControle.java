@@ -7,20 +7,21 @@ import java.util.List;
 import javax.swing.JTextArea;
 
 import br.com.sincronizador.dao.ExecutaCargaDAO;
+import br.com.sincronizador.entidade.Visao;
 
 public class AtualizacaoControle {
 
 	private ExecutaCargaDAO executaCargaDAO;
 	private List<String> bancos;
-	private List<String> visoes;
-
-	public AtualizacaoControle(List<String> bancos, List<String> visoes) {
+	private List<Visao> visoes;
+	private JTextArea   textArea;
+	
+	public AtualizacaoControle(List<String> bancos, List<Visao> visoes, JTextArea textArea) {
 
 		executaCargaDAO = new ExecutaCargaDAO();
 		this.bancos = bancos;
 		this.visoes = visoes;
-
-		bancos.add("DIFERPAN");
+		this.textArea = textArea;
 
 	}
 
@@ -28,22 +29,24 @@ public class AtualizacaoControle {
 
 		SimpleDateFormat stringToDate = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
-		textArea.setText("");
+		this.textArea.setText("");
 		
-		textArea.setText("MODO DE EXCUÇÂO - MANUAL \n\n");
-
+		this.textArea.setText("MODO DE EXCUÇÂO - MANUAL \n\n");
+		
 		for (String banco : bancos) {
-
-			for (String visao : visoes) {
-
-				textArea.append("Iniciou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+			
+			for (Visao visao : visoes) {
+				
+				if(visao.getBanco().equals(banco)) {
+				
+					this.textArea.append("Iniciou a " + tipoCarga + ": " + visao.getVisao().toString() + " no banco: " + banco + " as "
 						+ stringToDate.format(new Date()) + "\n");
 
-				executaCargaDAO.executa(visao, banco, tipoCarga, textArea);
+					executaCargaDAO.executa(visao.getVisao(), banco, tipoCarga, textArea);
 
-				textArea.append("Finalizou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+					this.textArea.append("Finalizou a " + tipoCarga + ": " + visao.getVisao().toString() + " no banco: " + banco + " as "
 						+ stringToDate.format(new Date()) + "\n");
-
+				}
 			}
 		}
 

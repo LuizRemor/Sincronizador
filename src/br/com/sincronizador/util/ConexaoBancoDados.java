@@ -30,7 +30,9 @@ public class ConexaoBancoDados {
 			
 		}else if(banco.equals("DIFERPAN")) {
 			conexao = conexaoDiferpan();
-		} 
+		}else if(banco.equals("LOPES")) {
+			conexao = conexaoLopes();
+		}
 		
 		return conexao;
 		
@@ -47,6 +49,25 @@ public class ConexaoBancoDados {
 			conexao = DriverManager.getConnection("jdbc:oracle:thin:@10.0.4.4:1521:DIFERPAN", 
 					                              "INTRANET", 
 					                              "INTR9N3TB9S3");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return conexao;
+
+	}
+	
+	private Connection conexaoLopes() {
+
+		Connection conexao = null;
+
+		try {
+			
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conexao = DriverManager.getConnection("jdbc:oracle:thin:@lopesdist-dataunique.ddns.com.br:1521:WINT", 
+					                              "G4", 
+					                              "bmub2106$");
 
 		} catch (Exception e) {
 			e.printStackTrace();

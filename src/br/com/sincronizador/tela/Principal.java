@@ -14,6 +14,7 @@ import javax.swing.text.DefaultCaret;
 
 import br.com.sincronizador.controle.AtualizacaoControle;
 import br.com.sincronizador.controle.ThreadAtualizacao;
+import br.com.sincronizador.entidade.Visao;
 
 // Herança (extends) e Interface (implements)
 public class Principal extends JFrame implements ActionListener {
@@ -102,15 +103,29 @@ public class Principal extends JFrame implements ActionListener {
 
 		List<String> bancos = new ArrayList<>();
 		bancos.add("DIFERPAN");
+		bancos.add("LOPES");
 
-		List<String> visoes = new ArrayList<>();
-
-		visoes.add("FILIAL");
-		visoes.add("CLIENTE");
-		visoes.add("PRODUTO");
-		visoes.add("LOCALIZACAO");
-		visoes.add("VENDA");
-		visoes.add("ENTRADA");
+		List<Visao> visoes = new ArrayList<>();
+		
+		for(String banco : bancos) {
+			if(banco.equals("DIFERPAN")) {
+				
+				visoes.add(new Visao("DIFERPAN", "FILIAL"));
+				visoes.add(new Visao("DIFERPAN", "CLIENTE"));
+				//visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+				//visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
+				//visoes.add(new Visao("DIFERPAN", "VENDA"));
+				//visoes.add(new Visao("DIFERPAN", "ENTRADA"));
+				
+			}
+			else if(banco.equals("LOPES")){
+				visoes.add(new Visao("LOPES", "FILIAL"));
+				visoes.add(new Visao("LOPES", "CLIENTE"));
+				//visoes.add(new Visao("LOPES", "PRODUTO"));
+				//visoes.add(new Visao("LOPES", "VENDA"));
+				//visoes.add(new Visao("LOPES", "ENTRADA"));
+			}
+		}
 
 		if (actionEvent.getActionCommand().equals("BOTAO-FINALIZAR")) {
 
@@ -118,7 +133,7 @@ public class Principal extends JFrame implements ActionListener {
 
 		} else if (actionEvent.getActionCommand().equals("BOTAO-CARGA")) {
 
-			AtualizacaoControle atualizacaoControle = new AtualizacaoControle(bancos, visoes);
+			AtualizacaoControle atualizacaoControle = new AtualizacaoControle(bancos, visoes, this.textArea);
 
 			atualizacaoControle.atualizaCargas("INICIAL", this.textArea);
 

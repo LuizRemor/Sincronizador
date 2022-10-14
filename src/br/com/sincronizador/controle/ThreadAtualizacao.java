@@ -8,30 +8,32 @@ import java.util.List;
 import javax.swing.JTextArea;
 
 import br.com.sincronizador.dao.ExecutaCargaDAO;
+import br.com.sincronizador.entidade.Visao;
 
 public class ThreadAtualizacao extends Thread {
 	
 	private ExecutaCargaDAO executaCargaDAO;
-	private List<String> bancos;
-	private List<String> visoes;
-	private JTextArea textArea;
-	private String tipoCarga;
-	private Long   intervalo;
-	private Boolean executa;
+	private List<String>    bancos;
+	private List<Visao>    visoes;
+	private JTextArea       textArea;
+	private String          tipoCarga;
+	private Long            intervalo;
+	private Boolean         executa;
 	
-	public ThreadAtualizacao(List<String> bancos, List<String> visoes, JTextArea textArea) {
+	public ThreadAtualizacao(List<String> bancos, List<Visao> visoes, JTextArea textArea) {
 		
 		executaCargaDAO = new ExecutaCargaDAO();
-		this.bancos = bancos;
-		this.visoes = visoes;
-		this.textArea = textArea;
-		this.tipoCarga     = "ATUALIZACAO";
-		this.executa       = true;
+		this.bancos     = bancos;
+		this.visoes     = visoes;
+		this.textArea   = textArea;
+		this.tipoCarga  = "ATUALIZACAO";
+		this.executa    = true;
 		// 30 minutos
-		this.intervalo     = (long)30*60*1000;
+		this.intervalo  = (long)30*60*1000;
 		
 	}
 	
+	@SuppressWarnings("static-access")
 	@Override
 	public void run() {
 		
@@ -45,16 +47,18 @@ public class ThreadAtualizacao extends Thread {
 
 				for (String banco : bancos) {
 
-					for (String visao : visoes) {
+					for (Visao visao : visoes) {
+						
+						if(visao.getBanco().equals(banco)) {
 
-						textArea.append("Iniciou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+						textArea.append("Iniciou a " + tipoCarga + ": " + visao.getVisao().toString() + " no banco: " + banco + " as "
 								+ dateToString.format(new Date()) + "\n");
 
-						executaCargaDAO.executa(visao, banco, tipoCarga, textArea);
+						executaCargaDAO.executa(visao.getVisao(), banco, tipoCarga, textArea);
 
-						textArea.append("Finalizou a " + tipoCarga + ": " + visao + " no banco: " + banco + " as "
+						textArea.append("Finalizou a " + tipoCarga + ": " + visao.getVisao().toString() + " no banco: " + banco + " as "
 								+ dateToString.format(new Date()) + "\n");
-
+						}
 					}
 				}
 				

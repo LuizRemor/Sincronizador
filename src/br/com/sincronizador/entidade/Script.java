@@ -129,43 +129,43 @@ public class Script {
 		if (tipoCarga.equals("INICIAL")) {
 
 			if (chave.equals("FILIAL")) {
-				return "SELECT * FROM V_DIM_FILIALG4";
+				return "SELECT * FROM V_DIMG4_FILIAL";
 			} 
 			else if (chave.equals("CLIENTE")) {
-				return "SELECT * FROM V_DIM_CLIENTEG4";
+				return "SELECT * FROM V_DIMG4_CLIENTE";
 			} 
 			else if (chave.equals("PRODUTO")) {
-				return "SELECT * FROM V_DIM_PRODUTOG4";
-			} 
+				return "SELECT * FROM V_DIMG4_PRODUTO";
+			}
 			else if (chave.equals("LOCALIZACAO")) {
-				return "SELECT * FROM V_DIM_LOCALIZACAOG4";
-			} 
+				return "SELECT * FROM V_DIMG4_LOCALIZACAO";
+			}
 			else if (chave.equals("VENDA")) {
-				return "SELECT * FROM V_FATO_VENDAG4 WHERE 1 = 1 ";
+				return "SELECT * FROM V_FATOG4_VENDA WHERE 1 = 1 ";
 			} 
 			else if (chave.equals("ENTRADA")) {
-				return "SELECT * FROM V_FATO_ENTRADAG4 WHERE 1 = 1 ";
+				return "SELECT * FROM V_FATOG4_ENTRADA WHERE 1 = 1 ";
 			}
 
 		} else {
 			
 			if (chave.equals("FILIAL")) {
-				return "SELECT * FROM V_DIM_FILIALG4";
+				return "SELECT * FROM V_DIMG4_FILIAL";
 			} 
 			else if (chave.equals("CLIENTE")) {
-				return "SELECT * FROM V_DIM_CLIENTEG4";
+				return "SELECT * FROM V_DIMG4_CLIENTE";
 			} 
 			else if (chave.equals("PRODUTO")) {
-				return "SELECT * FROM V_DIM_PRODUTOG4";
+				return "SELECT * FROM V_DIMG4_PRODUTO";
 			} 
 			else if (chave.equals("LOCALIZACAO")) {
-				return "SELECT * FROM V_DIM_LOCALIZACAOG4";
+				return "SELECT * FROM V_DIMG4_LOCALIZACAO";
 			} 
 			else if (chave.equals("VENDA")) {
-				return "SELECT * FROM V_FATO_VENDAG4 WHERE 1 = 1 AND V_FATO_VENDAG4.DATA >= TRUNC(SYSDATE-4)";
+				return "SELECT * FROM V_FATOG4_VENDA WHERE 1 = 1 AND V_FATOG4_VENDA.DATA >= TRUNC(SYSDATE-4)";
 			} 
 			else if (chave.equals("ENTRADA")) {
-				return "SELECT * FROM V_FATO_ENTRADAG4 WHERE 1 = 1 AND V_FATO_ENTRADAG4.DTEMISSAO >= TRUNC(SYSDATE-4)";
+				return "SELECT * FROM V_FATOG4_ENTRADA WHERE 1 = 1 AND V_FATOG4_ENTRADA.DTEMISSAO >= TRUNC(SYSDATE-4)";
 			}
 			
 		}
@@ -177,10 +177,10 @@ public class Script {
 	public String retornaScriptSelectMenorData(String chave) {
 
 		if (chave.equals("VENDA")) {
-			return "SELECT MIN(V_FATO_VENDAG4.DATA) AS DATA AS QTDE FROM V_FATO_VENDAG4";
+			return "SELECT MIN(V_FATOG4_VENDA.DATA) AS DATA AS QTDE FROM V_FATOG4_VENDA";
 		} 
 		else if (chave.equals("ENTRADA")) {
-			return "SELECT MIN(V_FATO_ENTRADAG4.DTEMISSAO) AS DATA AS QTDE FROM V_FATO_ENTRADAG4";
+			return "SELECT MIN(V_FATOG4_ENTRADA.DTEMISSAO) AS DATA AS QTDE FROM V_FATOG4_ENTRADA";
 		}
 
 		return chave;
