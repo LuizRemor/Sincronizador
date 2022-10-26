@@ -112,18 +112,18 @@ public class Principal extends JFrame implements ActionListener {
 				
 				visoes.add(new Visao("DIFERPAN", "FILIAL"));
 				visoes.add(new Visao("DIFERPAN", "CLIENTE"));
-				//visoes.add(new Visao("DIFERPAN", "PRODUTO"));
-				//visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
-				//visoes.add(new Visao("DIFERPAN", "VENDA"));
-				//visoes.add(new Visao("DIFERPAN", "ENTRADA"));
+				visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+				visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
+				visoes.add(new Visao("DIFERPAN", "VENDA"));
+				visoes.add(new Visao("DIFERPAN", "ENTRADA"));
 				
 			}
 			else if(banco.equals("LOPES")){
 				visoes.add(new Visao("LOPES", "FILIAL"));
 				visoes.add(new Visao("LOPES", "CLIENTE"));
-				//visoes.add(new Visao("LOPES", "PRODUTO"));
-				//visoes.add(new Visao("LOPES", "VENDA"));
-				//visoes.add(new Visao("LOPES", "ENTRADA"));
+				visoes.add(new Visao("LOPES", "PRODUTO"));
+				visoes.add(new Visao("LOPES", "VENDA"));
+				visoes.add(new Visao("LOPES", "ENTRADA"));
 			}
 		}
 
