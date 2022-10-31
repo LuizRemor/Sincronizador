@@ -115,19 +115,20 @@ public class ExecutaCargaDAO {
 
 					comando = comando.replace("[ID]", resultSet.getString(1));
 					comando = comando.replace("[EMPRESA]", resultSet.getString(2));
-					comando = comando.replace("[CODIGO]", resultSet.getString(3));
-					comando = comando.replace("[DESCRICAO]", resultSet.getString(4));
-					comando = comando.replace("[DTCADASTRO]", this.converteDataParaTextoSemHora(resultSet.getDate(5)));
-					comando = comando.replace("[CODIGOBARRA]", String.valueOf(resultSet.getLong(6)));
-					comando = comando.replace("[FORNECEDOR]", resultSet.getString(7));
-					comando = comando.replace("[CODIGOFABRICA]", resultSet.getString(8));
-					comando = comando.replace("[DEPARTAMENTO]", resultSet.getString(9));
-					comando = comando.replace("[SECAO]", resultSet.getString(10));
-					comando = comando.replace("[MARCA]", resultSet.getString(11));
-					comando = comando.replace("[TIPO]", resultSet.getString(12));
-					comando = comando.replace("[ATIVO]", String.valueOf(resultSet.getLong(13)));
+					comando = comando.replace("[FILIAL_ID]", resultSet.getString(3));
+					comando = comando.replace("[CODIGO]", resultSet.getString(4));
+					comando = comando.replace("[DESCRICAO]", resultSet.getString(5));
+					comando = comando.replace("[DTCADASTRO]", this.converteDataParaTextoSemHora(resultSet.getDate(6)));
+					comando = comando.replace("[CODIGOBARRA]", String.valueOf(resultSet.getLong(7)));
+					comando = comando.replace("[FORNECEDOR]", resultSet.getString(8));
+					comando = comando.replace("[CODIGOFABRICA]", resultSet.getString(9));
+					comando = comando.replace("[DEPARTAMENTO]", resultSet.getString(10));
+					comando = comando.replace("[SECAO]", resultSet.getString(11));
+					comando = comando.replace("[MARCA]", resultSet.getString(12));
+					comando = comando.replace("[TIPO]", resultSet.getString(13));
+					comando = comando.replace("[ATIVO]", String.valueOf(resultSet.getLong(14)));
 					comando = comando.replace("[DTULTIMAALTERACAO]",
-							this.converteDataParaTextoComHora(resultSet.getDate(14)));
+							this.converteDataParaTextoComHora(resultSet.getDate(15)));
 
 				} else if (chave.equals("LOCALIZACAO")) {
 

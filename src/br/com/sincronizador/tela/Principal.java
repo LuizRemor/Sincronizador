@@ -19,133 +19,167 @@ import br.com.sincronizador.entidade.Visao;
 // Herança (extends) e Interface (implements)
 public class Principal extends JFrame implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	private JTextArea textArea;
-	private JPanel painel;
-	private JButton carga;
-	private JButton atualizacao;
+    private JTextArea textArea;
+    private JPanel painel;
+    private JButton carga;
+    private JButton atualizacao;
 
-	public Principal() {
+    public Principal() {
 
-		// contrutor da classe pai super
-		super("Sincronizador");
+        // contrutor da classe pai super
+        super("Sincronizador");
 
-		this.setSize(590, 500);
+        this.setSize(590, 500);
 
-		this.montaPainel();
+        this.montaPainel();
 
-		this.add(painel);
+        this.add(painel);
 
-		this.setResizable(false);
+        this.setResizable(false);
 
-		this.setVisible(true);
+        this.setVisible(true);
 
-		this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
-	}
+        iniciaThreadAtualizacao();
 
-	private void montaPainel() {
+    }
 
-		painel = new JPanel();
-		painel.setLayout(null);
+    private void montaPainel() {
 
-		textArea = new JTextArea(10, 30);
-		textArea.setEditable(false);
+        painel = new JPanel();
+        painel.setLayout(null);
 
-		DefaultCaret caret = (DefaultCaret) textArea.getCaret();
-		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+        textArea = new JTextArea(10, 30);
+        textArea.setEditable(false);
 
-		JScrollPane jScrollPane = new JScrollPane(textArea);
-		jScrollPane.setBounds(50, 50, 470, 300);
+        DefaultCaret caret = (DefaultCaret) textArea.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
-		painel.add(jScrollPane);
+        JScrollPane jScrollPane = new JScrollPane(textArea);
+        jScrollPane.setBounds(50, 50, 470, 300);
 
-		JButton finalizar = new JButton("Fechar");
-		finalizar.setActionCommand("BOTAO-FINALIZAR");
-		finalizar.setBounds(50, 380, 150, 30);
-		finalizar.addActionListener(this);
+        painel.add(jScrollPane);
 
-		carga = new JButton("Carga Inicial");
-		carga.setActionCommand("BOTAO-CARGA");
-		carga.setBounds(210, 380, 150, 30);
-		carga.addActionListener(this);
+        JButton finalizar = new JButton("Fechar");
+        finalizar.setActionCommand("BOTAO-FINALIZAR");
+        finalizar.setBounds(50, 380, 150, 30);
+        finalizar.addActionListener(this);
 
-		atualizacao = new JButton("Iniciar atualizações");
-		atualizacao.setBounds(370, 380, 150, 30);
-		atualizacao.setActionCommand("BOTAO-ATUALIZACAO");
-		atualizacao.addActionListener(this);
+        carga = new JButton("Carga Inicial");
+        carga.setActionCommand("BOTAO-CARGA");
+        carga.setBounds(210, 380, 150, 30);
+        carga.addActionListener(this);
 
-		painel.add(finalizar);
-		painel.add(carga);
-		painel.add(atualizacao);
+        atualizacao = new JButton("Iniciar atualizações");
+        atualizacao.setBounds(370, 380, 150, 30);
+        atualizacao.setActionCommand("BOTAO-ATUALIZACAO");
+        atualizacao.addActionListener(this);
 
-	}
+        painel.add(finalizar);
+        painel.add(carga);
+        painel.add(atualizacao);
 
-	public static void main(String strings[]) {
+    }
 
-		String modo = System.getProperty("mode");
+    public static void main(String strings[]) {
 
-		if ((modo != null) && (modo.toUpperCase().equals("SERVER"))) {
+        String modo = System.getProperty("mode");
 
-			System.out.println("### Modo Server ###");
+        if ((modo != null) && (modo.toUpperCase().equals("SERVER"))) {
 
-		} else {
+            System.out.println("### Modo Server ###");
 
-			new Principal();
+        } else {
 
-		}
+            new Principal();
 
-	}
+        }
 
-	@Override
-	public void actionPerformed(ActionEvent actionEvent) {
+    }
 
-		List<String> bancos = new ArrayList<>();
-		bancos.add("DIFERPAN");
-		bancos.add("LOPES");
+    @Override
+    public void actionPerformed(ActionEvent actionEvent) {
 
-		List<Visao> visoes = new ArrayList<>();
-		
-		for(String banco : bancos) {
-			if(banco.equals("DIFERPAN")) {
-				
-				visoes.add(new Visao("DIFERPAN", "FILIAL"));
-				visoes.add(new Visao("DIFERPAN", "CLIENTE"));
-				visoes.add(new Visao("DIFERPAN", "PRODUTO"));
-				visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
-				visoes.add(new Visao("DIFERPAN", "VENDA"));
-				visoes.add(new Visao("DIFERPAN", "ENTRADA"));
-				
-			}
-			else if(banco.equals("LOPES")){
-				visoes.add(new Visao("LOPES", "FILIAL"));
-				visoes.add(new Visao("LOPES", "CLIENTE"));
-				visoes.add(new Visao("LOPES", "PRODUTO"));
-				visoes.add(new Visao("LOPES", "VENDA"));
-				visoes.add(new Visao("LOPES", "ENTRADA"));
-			}
-		}
+        List<String> bancos = new ArrayList<>();
+        bancos.add("DIFERPAN");
+        bancos.add("LOPES");
 
-		if (actionEvent.getActionCommand().equals("BOTAO-FINALIZAR")) {
+        List<Visao> visoes = new ArrayList<>();
 
-			System.exit(0);
+        for (String banco : bancos) {
+            if (banco.equals("DIFERPAN")) {
 
-		} else if (actionEvent.getActionCommand().equals("BOTAO-CARGA")) {
+                visoes.add(new Visao("DIFERPAN", "FILIAL"));
+                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
+                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+                visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
+                visoes.add(new Visao("DIFERPAN", "VENDA"));
+                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
 
-			AtualizacaoControle atualizacaoControle = new AtualizacaoControle(bancos, visoes, this.textArea);
+            } else if (banco.equals("LOPES")) {
+                visoes.add(new Visao("LOPES", "FILIAL"));
+                visoes.add(new Visao("LOPES", "CLIENTE"));
+                visoes.add(new Visao("LOPES", "PRODUTO"));
+                visoes.add(new Visao("LOPES", "VENDA"));
+                visoes.add(new Visao("LOPES", "ENTRADA"));
+            }
+        }
 
-			atualizacaoControle.atualizaCargas("INICIAL", this.textArea);
+        if (actionEvent.getActionCommand().equals("BOTAO-FINALIZAR")) {
 
-		} else if (actionEvent.getActionCommand().equals("BOTAO-ATUALIZACAO")) {
+            System.exit(0);
 
-			this.carga.setEnabled(false);
-			this.atualizacao.setEnabled(false);
-			ThreadAtualizacao thread = new ThreadAtualizacao(bancos, visoes, this.textArea);
-			thread.start();
+        } else if (actionEvent.getActionCommand().equals("BOTAO-CARGA")) {
 
-		}
+            AtualizacaoControle atualizacaoControle = new AtualizacaoControle(bancos, visoes, this.textArea);
 
-	}
+            atualizacaoControle.atualizaCargas("INICIAL", this.textArea);
 
+        } else if (actionEvent.getActionCommand().equals("BOTAO-ATUALIZACAO")) {
+
+            this.carga.setEnabled(false);
+            this.atualizacao.setEnabled(false);
+            ThreadAtualizacao thread = new ThreadAtualizacao(bancos, visoes, this.textArea);
+            thread.start();
+
+        }
+
+    }
+
+    public void iniciaThreadAtualizacao() {
+
+        List<String> bancos = new ArrayList<>();
+        bancos.add("DIFERPAN");
+        bancos.add("LOPES");
+
+        List<Visao> visoes = new ArrayList<>();
+
+        for (String banco : bancos) {
+            if (banco.equals("DIFERPAN")) {
+
+                visoes.add(new Visao("DIFERPAN", "FILIAL"));
+                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
+                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+                visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
+                visoes.add(new Visao("DIFERPAN", "VENDA"));
+                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
+
+            } else if (banco.equals("LOPES")) {
+                visoes.add(new Visao("LOPES", "FILIAL"));
+                visoes.add(new Visao("LOPES", "CLIENTE"));
+                visoes.add(new Visao("LOPES", "PRODUTO"));
+                visoes.add(new Visao("LOPES", "VENDA"));
+                visoes.add(new Visao("LOPES", "ENTRADA"));
+            }
+        }
+
+        this.carga.setEnabled(false);
+        this.atualizacao.setEnabled(false);
+        ThreadAtualizacao thread = new ThreadAtualizacao(bancos, visoes, this.textArea);
+        thread.start();
+
+    }
 }
