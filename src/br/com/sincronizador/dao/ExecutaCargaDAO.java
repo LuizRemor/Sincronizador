@@ -143,6 +143,7 @@ public class ExecutaCargaDAO {
 					comando = comando.replace("[REGIAO]", resultSet.getString(9));
 					comando = comando.replace("[ESTADO]", resultSet.getString(10));
 					comando = comando.replace("[POPULACAO]", resultSet.getString(11));
+					comando = comando.replace("[PAIS]", resultSet.getString(12));
 
 				} else if (chave.equals("VENDA")) {
 
