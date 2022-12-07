@@ -63,13 +63,13 @@ public class Script {
 		} else if (chave.equals("PRODUTO")) {
 
 			return " insert into g4.tb_dim_produtog4(id,empresa,filial_id,codigo,descricao,dtcadastro,codigobarraunitario,fornecedor,codigofabrica,departamento,secao,marca,tipo,ativo,dtultimaalteracao) "
-					+ " values('[ID]','[EMPRESA]','[FILIAL_ID]','[CODIGO]','[DESCRICAO]',TO_DATE('[DTCADASTRO]','ddmmyyyy'),[CODIGOBARRA],'[FORNECEDOR]','[CODIGOFABRICA]','[DEPARTAMENTO]','[SECAO]','[MARCA]','[TIPO]',[ATIVO],TO_TIMESTAMP('[DTULTIMAALTERACAO]','ddmmyyyy hh24miss')) "
+					+ " values('[ID]','[EMPRESA]','[FILIAL_ID]',[CODIGO],'[DESCRICAO]',TO_DATE('[DTCADASTRO]','ddmmyyyy'),[CODIGOBARRA],'[FORNECEDOR]','[CODIGOFABRICA]','[DEPARTAMENTO]','[SECAO]','[MARCA]','[TIPO]',[ATIVO],TO_TIMESTAMP('[DTULTIMAALTERACAO]','ddmmyyyy hh24miss')) "
 					+ "  on conflict (id) " 
 					+ "  do " 
 					+ " update " 
 					+ "    set "
 					+ "empresa                      = '[EMPRESA]'    ,"
-					+ " 		codigo              = '[CODIGO]'     ,"
+					+ " 		codigo              = [CODIGO]     ,"
 					+ "         filial_id           = '[FILIAL_ID]'  ,"
 					+ "         descricao           = '[DESCRICAO]'  ,"
 					+ " 		dtcadastro          =  TO_DATE('[DTCADASTRO]','ddmmyyyy'), "

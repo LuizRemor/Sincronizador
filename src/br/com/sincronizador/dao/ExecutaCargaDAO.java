@@ -116,7 +116,7 @@ public class ExecutaCargaDAO {
 					comando = comando.replace("[ID]", resultSet.getString(1));
 					comando = comando.replace("[EMPRESA]", resultSet.getString(2));
 					comando = comando.replace("[FILIAL_ID]", resultSet.getString(3));
-					comando = comando.replace("[CODIGO]", resultSet.getString(4));
+					comando = comando.replace("[CODIGO]", String.valueOf(resultSet.getLong(4)));
 					comando = comando.replace("[DESCRICAO]", resultSet.getString(5));
 					comando = comando.replace("[DTCADASTRO]", this.converteDataParaTextoSemHora(resultSet.getDate(6)));
 					comando = comando.replace("[CODIGOBARRA]", String.valueOf(resultSet.getLong(7)));

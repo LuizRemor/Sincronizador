@@ -43,6 +43,7 @@ public class Principal extends JFrame implements ActionListener {
 
         this.setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
 
+        //DESCOMENTAR A LINHA ABAIXO PARA MONTAR O SINCRINIZADOR INICIANDO AUTOMÁTICO QUANDO FOR ABERTO
         //iniciaThreadAtualizacao();
 
     }
@@ -112,19 +113,19 @@ public class Principal extends JFrame implements ActionListener {
         for (String banco : bancos) {
             if (banco.equals("DIFERPAN")) {
 
-//                visoes.add(new Visao("DIFERPAN", "FILIAL"));
-//                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
-//                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+                visoes.add(new Visao("DIFERPAN", "FILIAL"));
+                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
+                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
                 visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
-//                visoes.add(new Visao("DIFERPAN", "VENDA"));
-//                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
+                visoes.add(new Visao("DIFERPAN", "VENDA"));
+                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
 
             } else if (banco.equals("LOPES")) {
-//                visoes.add(new Visao("LOPES", "FILIAL"));
-//                visoes.add(new Visao("LOPES", "CLIENTE"));
-//                visoes.add(new Visao("LOPES", "PRODUTO"));
-//                visoes.add(new Visao("LOPES", "VENDA"));
-//                visoes.add(new Visao("LOPES", "ENTRADA"));
+                visoes.add(new Visao("LOPES", "FILIAL"));
+                visoes.add(new Visao("LOPES", "CLIENTE"));
+                visoes.add(new Visao("LOPES", "PRODUTO"));
+                visoes.add(new Visao("LOPES", "VENDA"));
+                visoes.add(new Visao("LOPES", "ENTRADA"));
             }
         }
 
@@ -160,19 +161,19 @@ public class Principal extends JFrame implements ActionListener {
         for (String banco : bancos) {
             if (banco.equals("DIFERPAN")) {
 
-//                visoes.add(new Visao("DIFERPAN", "FILIAL"));
-//                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
-//                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
-//                visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
-//                visoes.add(new Visao("DIFERPAN", "VENDA"));
-//                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
+                visoes.add(new Visao("DIFERPAN", "FILIAL"));
+                visoes.add(new Visao("DIFERPAN", "CLIENTE"));
+                visoes.add(new Visao("DIFERPAN", "PRODUTO"));
+                visoes.add(new Visao("DIFERPAN", "LOCALIZACAO"));
+                visoes.add(new Visao("DIFERPAN", "VENDA"));
+                visoes.add(new Visao("DIFERPAN", "ENTRADA"));
 
             } else if (banco.equals("LOPES")) {
-//                visoes.add(new Visao("LOPES", "FILIAL"));
-//                visoes.add(new Visao("LOPES", "CLIENTE"));
-//                visoes.add(new Visao("LOPES", "PRODUTO"));
-//                visoes.add(new Visao("LOPES", "VENDA"));
-//                visoes.add(new Visao("LOPES", "ENTRADA"));
+                visoes.add(new Visao("LOPES", "FILIAL"));
+                visoes.add(new Visao("LOPES", "CLIENTE"));
+                visoes.add(new Visao("LOPES", "PRODUTO"));
+                visoes.add(new Visao("LOPES", "VENDA"));
+                visoes.add(new Visao("LOPES", "ENTRADA"));
             }
         }
 
