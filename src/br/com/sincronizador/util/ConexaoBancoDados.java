@@ -85,7 +85,7 @@ public class ConexaoBancoDados {
 		try {
 			
 			Class.forName("org.postgresql.Driver");
-			conexao = DriverManager.getConnection("jdbc:postgresql://10.0.4.43:5432/postgres", 
+			conexao = DriverManager.getConnection("jdbc:postgresql://10.0.4.59:5432/postgres", 
 					                              "postgres", 
 					                              "adfec#855@Postgre");
 
